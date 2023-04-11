@@ -15,7 +15,7 @@ describe('Adding employees dynamically', () => {
     it('should be called from the Employee constructor if a manager is passed in', () => {
         const spy = chai.spy.on(splinter, 'addEmployee');
         const leo = new Employee('Leonardo', 90000, 'Ninja', splinter);
-        
+
         expect(spy).to.have.been.called()
     });
 
@@ -25,7 +25,7 @@ describe('Adding employees dynamically', () => {
         expect(employees).to.eql([]);
 
         const leo = new Employee('Leonardo', 90000, 'Ninja', splinter);
-       
+
         expect(employees).to.eql([leo]);
 
         const raph = new Employee('Raphael', 90000, 'Ninja', splinter);
