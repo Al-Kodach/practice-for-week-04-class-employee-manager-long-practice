@@ -1,44 +1,24 @@
 class Employee {
+  // Parent class
+  // If employee is not under any manager we default it to null
   constructor(name, salary, title, manager = null) {
     this.name = name;
     this.salary = salary;
     this.title = title;
     this.manager = manager;
+
+    // If the constructed employee is under a manger or a manager is passed in
+    // We add it to that manager's employees list
     if (this.manager instanceof Employee) {
-      this.manager.addEmployee(Object(this));
+      this.manager.addEmployee(this);
     }
   }
 
+  // If employee is not an
   calculateBonus(multiplier) {
-    if (this instanceof Employee && !this.employees) {
-      return this.salary * multiplier;
-    }
-
-    if (this instanceof Employee && this.employees) {
-      let subtotal = this._totalSubSalary(this.employees);
-      return (this.salary + subtotal) * multiplier;
-    }
+    return this.salary * multiplier;
   }
 
-  _totalSubSalary(arr, subT = 0) {
-    // base case
-    if (!arr.length) {
-      return subT;
-    }
-
-    let current = arr[0];
-    let salary = current.salary;
-
-    if (current.employees) {
-      return this._totalSubSalary(
-        current.employees, (subT += salary)
-      );
-    }
-
-    return this._totalSubSalary(
-      arr.slice(1), (subT += salary)
-    );
-  }
 }
 
 module.exports = Employee;
