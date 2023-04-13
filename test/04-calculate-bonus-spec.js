@@ -23,11 +23,11 @@ describe('The calculateBonus(multiplier) method:', () => {
         });
     });
 
-    describe('Manager.calculateBonus()', () => {    
+    describe('Manager.calculateBonus()', () => {
         it('should multiply the Manager\'s salary + a total sub salary of employees under them by a passed in multiplier', () => {
             expect(leo.calculateBonus(0.05)).to.eql(8750);
             expect(splinter.calculateBonus(0.05)).to.eql(13750);
-        });  
+        });
     });
 
     describe('Manager._totalSubSalary()', () => {
@@ -40,14 +40,14 @@ describe('The calculateBonus(multiplier) method:', () => {
         context('if element in this.employees array is an instance of Manager', () => {
             it('should recursively call itself adding all sub-employee\'s salaries to a running sum', () => {
                 const totalSubSalary = splinter._totalSubSalary(); // => splinter's only employee is leo, but leo may have employees
-                
+
                 expect(totalSubSalary).to.eql(175000)
             });
         });
         context('if element in this.employees array is an instance of Employee', () => {
             it('should add the employee\'s salary to a running sum', () => {
                 const totalSubSalary = leo._totalSubSalary();
-                
+
                 expect(totalSubSalary).to.eql(85000) // => leo's only employee is mikey
             });
         });
